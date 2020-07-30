@@ -71,18 +71,18 @@ public class Order {
 	}
 
 	public String toString() {
-		Date dt = new Date();
+		Date momment = new Date();
 		StringBuilder sb = new StringBuilder();
 		sb.append("ORDER SUMMARY: \n");
-		sb.append("Order moment: " + "(" + sdf2.format(dt) + ")" + "\n");
+		sb.append("Order moment: " + "(" + sdf2.format(momment) + ")" + "\n");
 		sb.append("Order status: " + orderStatus + "\n");
-		sb.append("Client: " + client.getName() + " " + "(" + sdf3.format(client.getBirthDate()) + ")" + " - " + client.getEmail() + "\n");
-		sb.append("Order items: \n");
+		sb.append("Client: " + client.getName() + " " + "(" + sdf3.format(client.getBirthDate()) + ")" + " - "
+				+ client.getEmail() + "\n" + "Order items: \n");
 		for (OrderItem i : orderitems) {
-			sb.append(i.getProduct().getName() + ", " + "$" + i.getProduct().getPrice() + ", Quantity: " + i.getQuantity()
-					+ ", Subtotal: " + "$" + String.format("%.2f", i.subTotal()) + "\n");
+			sb.append(i.getProduct().getName() + ", $" + String.format("%.2f", i.getProduct().getPrice()) + ", Quantity: "
+							+ i.getQuantity() + ", Subtotal: $" + String.format("%.2f", i.subTotal()) + "\n");
 		}
-		sb.append("Total price: " + "$" + String.format("%.2f", total()));
+		sb.append("Total price: $" + String.format("%.2f", total()));
 		return sb.toString();
 	}
 

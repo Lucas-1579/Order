@@ -28,6 +28,8 @@ public class Program {
 		String clientEmail = sc.nextLine();
 		System.out.print("Birth date (DD/MM/YYYY): ");
 		Date clientDate = sdf.parse(sc.next());
+		System.out.println();
+		
 		System.out.println("Enter order data: ");
 		System.out.print("Status: ");
 		sc.nextLine();
@@ -49,6 +51,7 @@ public class Program {
 			int quantity = sc.nextInt();
 			OrderItem item = new OrderItem(quantity, productPrice, new Product(productName, productPrice));
 			order.addItem(item);
+			System.out.println();
 		}
 
 		System.out.println(order);
