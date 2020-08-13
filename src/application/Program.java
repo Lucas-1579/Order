@@ -3,6 +3,7 @@ package application;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -14,13 +15,14 @@ import entities.enums.OrderStatus;
 
 public class Program {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args)  {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+		try {
 		System.out.println("Enter cliente data:");
 		System.out.print("Name: ");
 		String clientName = sc.nextLine();
@@ -36,7 +38,7 @@ public class Program {
 		String orderStatus = sc.nextLine();
 		Order order = new Order(new Client(clientName, clientEmail, clientDate), OrderStatus.valueOf(orderStatus));
 		System.out.println();
-
+		
 		System.out.print("How many items to this order? ");
 		int n = sc.nextInt();
 
@@ -53,8 +55,20 @@ public class Program {
 			order.addItem(item);
 			System.out.println();
 		}
-
+		
 		System.out.println(order);
+	}
+		catch (ParseException pe) {
+			System.out.print("Invalid Date format");
+		}
+		catch (IllegalArgumentException iae) {
+			System.out.println("Invalid Status");
+		}
+		catch (InputMismatchException ime) {
+			System.out.println("Invalid Input");
+		}
+		
+		
 
 		sc.close();
 
